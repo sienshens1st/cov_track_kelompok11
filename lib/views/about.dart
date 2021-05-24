@@ -117,7 +117,7 @@ class PersonalInfo extends StatelessWidget {
           backgroundColor: Colors.orangeAccent,
           child: CircleAvatar(
             maxRadius: height * 0.12,
-            backgroundImage: NetworkImage("https://haho.co.id/uploads/3376/company/1369/profile/Universitas_Tarumanagara-1.jpg"),
+            backgroundImage: AssetImage("images/untarImage.png"),
           ),
         ),
         SizedBox(

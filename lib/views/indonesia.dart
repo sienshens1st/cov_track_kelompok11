@@ -16,28 +16,6 @@ class Indonesia extends StatefulWidget {
 //{"country":"Indonesia","cases":1748230,"todayCases":4185,"deaths":48477,"todayDeaths":172,"recovered":1612239,"active":87514,"critical":0,"casesPerOneMillion":6333,"deathsPerOneMillion":176,"totalTests":15653438,"testsPerOneMillion":56705},
 class _IndonesiaState extends State<Indonesia> with TickerProviderStateMixin {
 
-  Future<List<User>> _getUsers() async{
-    var data = await http.get('https://api.kawalcorona.com/indonesia');
-    var jsonData = json.decode(data.body);
-
-   List<User> users = [];
-
-   for(var u in jsonData){
-     User user = User(u["name"],u["positif"],u["sembuh"],u["meninggal"],u["dirawat"]);
-     users.add(user);
-   }
-    print(users);
-   return users;
-
-  }
-
-  @override
-  void initState() {
-    _getUsers();
-    super.initState();
-  }
-
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -50,20 +28,95 @@ class _IndonesiaState extends State<Indonesia> with TickerProviderStateMixin {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Flag(height),
-          FutureBuilder(
-            future: _getUsers(),
+          FutureBuilder<HomeStats>(
+            future: CovidAPI().getIndonesiaCase(),
             builder: (context, snapshot) {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context,index){
-                    return Column(
-                      children: [
-                        Text(snapshot.data[index].name),
-                        Text(snapshot.data[index].positif),
-                      ],
-                    );
-                  },
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Container(
+                  height: height * 0.4155,
+                  child: Center(
+                    child: VirusLoader(),
+                  ),
                 );
+              }else{
+                int positif = int.parse(snapshot.data.positif);
+                int dirawat = int.parse(snapshot.data.dirawat);
+                int sembuh = int.parse(snapshot.data.sembuh);
+                int meninggal = int.parse(snapshot.data.meninggal);
+                return Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          "Last Update: ${snapshot.data.lastUpdate.substring(0, 10)} ${snapshot.data.lastUpdate.substring(11, 19)}",
+                          style: TextStyle(
+                              fontFamily: 'MyFont',
+                              fontSize: height * 0.02,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          width: width * 0.02,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {});
+                            },
+                            child: Icon(Icons.refresh))
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: positif,
+                            infoHeader: 'Cases',
+                            tileColor: Colors.blueAccent,
+                          ),
+                        ),
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: sembuh,
+                            infoHeader: 'Recoveries',
+                            tileColor: Colors.green,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: meninggal,
+                            infoHeader: 'Deaths',
+                            tileColor: Colors.redAccent,
+                          ),
+                        ),
+                        WidgetAnimator(
+                          HomeTile(
+                            caseCount: dirawat,
+                            infoHeader: 'Positive',
+                            tileColor: Colors.orangeAccent,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    Text(
+                      "Stay Home",
+                      style: TextStyle(
+                          fontFamily: 'MyFont', fontWeight: FontWeight.bold),
+                    )
+                  ],
+                );
+              }
             },
           )
         ],
@@ -87,7 +140,7 @@ class Flag extends StatelessWidget {
       backgroundColor: Colors.orangeAccent,
       child: CircleAvatar(
         maxRadius: height * 0.12,
-        backgroundImage: NetworkImage("https://cdn.britannica.com/48/1648-004-A33B72D8/Flag-Indonesia.jpg"),
+        backgroundImage:AssetImage("images/indoFlag.png"),
       )),
         Text(
           "INDONESIA",

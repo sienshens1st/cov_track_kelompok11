@@ -1,28 +1,20 @@
 class HomeStats {
-  int name;
-  int positif;
-  int sembuh;
-  int meninggal;
-  int dirawat;
+  final String positif;
+  final String dirawat;
+  final String sembuh;
+  final String meninggal;
+  final String lastUpdate;
 
   HomeStats(
-      {this.name, this.positif, this.sembuh, this.meninggal, this.dirawat});
+      {this.positif, this.dirawat, this.sembuh, this.meninggal, this.lastUpdate});
 
-  HomeStats.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    positif = json['positif'];
-    sembuh = json['sembuh'];
-    meninggal = json['meninggal'];
-    dirawat = json['dirawat'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['positif'] = this.positif;
-    data['sembuh'] = this.sembuh;
-    data['meninggal'] = this.meninggal;
-    data['dirawat'] = this.dirawat;
-    return data;
+  factory HomeStats.fromJSON(Map<String, dynamic> json) {
+    return HomeStats(
+      positif :json['positif'].toString(),
+      dirawat: json ['dirawat'].toString(),
+      sembuh :json['sembuh'].toString(),
+      meninggal :json['meninggal'].toString(),
+      lastUpdate :json['lastUpdate'].toString(),
+    );
   }
 }

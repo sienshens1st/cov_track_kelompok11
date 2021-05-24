@@ -143,7 +143,7 @@ class _MainImageState extends State<MainImage>
       child: Column(
         children: <Widget>[
           Image.asset(
-            'images/personFighting.png',
+            'images/removebgperson.png',
             height: MediaQuery.of(context).size.height * 0.25,
           ),
           Text(

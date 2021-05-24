@@ -24,7 +24,7 @@ class _WorldState extends State<World> with TickerProviderStateMixin {
       child: Stack(
         children: <Widget>[
           Text(
-            "\tGlobal COVID-19",
+            "  Global COVID-19",
             style: TextStyle(
                 fontSize: height * 0.04,
                 fontWeight: FontWeight.w200,
