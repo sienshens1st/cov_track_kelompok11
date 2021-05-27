@@ -1,3 +1,4 @@
+import 'package:covtrack_app_uas/views/Info.dart';
 import 'package:covtrack_app_uas/views/about.dart';
 import 'package:covtrack_app_uas/views/indonesia.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   int currentIndex = 0;
-  final List<Widget> children = [World(), Indonesia(), Country(), About()];
+  final List<Widget> children = [World(), Indonesia(), Country(), About(),Info()];
   AnimationController _controller;
 
   @override
@@ -76,10 +77,17 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
           BottomNavigationBarItem(
               activeIcon: RotationTransition(
                 turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                child: Icon(Icons.add_circle),
+              ),
+              icon: Icon(Icons.add_circle),
+              title: Text("Tips", style: TextStyle(fontFamily: 'MyFont'))),
+          BottomNavigationBarItem(
+              activeIcon: RotationTransition(
+                turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
                 child: Icon(Icons.info),
               ),
               icon: Icon(Icons.info),
-              title: Text("About", style: TextStyle(fontFamily: 'MyFont')))
+              title: Text("Info", style: TextStyle(fontFamily: 'MyFont')))
         ],
       ),
       body: currentIndex == 0
