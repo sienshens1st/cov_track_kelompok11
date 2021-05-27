@@ -104,6 +104,9 @@ class DetailCard extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Card(
+      shadowColor: Colors.blue,
+      elevation: 3.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: Container(
         padding: EdgeInsets.all(5.0),
         child: ListTile(

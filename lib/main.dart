@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         loadingText: Text('Stay Home, Stay Safe!',
             style:
             TextStyle(fontFamily: 'MyFont', fontWeight: FontWeight.bold)),
-        loaderColor: Colors.orange,
+        loaderColor: Colors.blue,
         navigateAfterSeconds: Dashboard(),
       ),
     );

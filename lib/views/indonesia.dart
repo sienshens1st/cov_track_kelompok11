@@ -137,7 +137,7 @@ class Flag extends StatelessWidget {
       children: <Widget>[
     CircleAvatar(
     maxRadius: height * 0.123,
-      backgroundColor: Colors.orangeAccent,
+      backgroundColor: Colors.blue,
       child: CircleAvatar(
         maxRadius: height * 0.12,
         backgroundImage:AssetImage("images/indoFlag.png"),

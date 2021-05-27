@@ -11,9 +11,9 @@ class VirusLoader extends StatelessWidget {
             child: Image(
               height: MediaQuery.of(context).size.height * 0.02,
               image: AssetImage(
-                'images/loader.png'
+                'images/loader7.gif'
               ),
-              color: Theme.of(context).accentColor,
+              color: Colors.blue,
             )),
       ),
     );
