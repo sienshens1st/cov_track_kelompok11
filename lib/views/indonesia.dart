@@ -110,7 +110,7 @@ class _IndonesiaState extends State<Indonesia> with TickerProviderStateMixin {
                       height: height * 0.03,
                     ),
                     Text(
-                      "Stay Home",
+                      "Hang in there, as better times are ahead.",
                       style: TextStyle(
                           fontFamily: 'MyFont', fontWeight: FontWeight.bold),
                     )
@@ -151,16 +151,4 @@ class Flag extends StatelessWidget {
       ],
     );
   }
-}
-
-class User{
-
-int name;
-int positif;
-int sembuh;
-int meninggal;
-int dirawat;
-
-User(this.name, this.positif, this.sembuh, this.meninggal, this.dirawat);
-
 }

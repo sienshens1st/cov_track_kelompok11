@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       home: SplashScreen(
         seconds: 2,
-        imageBackground: AssetImage('images/covid3.jpg'),
+        imageBackground: AssetImage('images/washedit2.png'),
         loadingText: Text('Stay Home, Stay Safe!',
             style:
             TextStyle(fontFamily: 'MyFont', fontWeight: FontWeight.bold)),

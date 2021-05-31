@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               // ),
               icon: Icon(Icons.home_rounded),
               title:
-                  Text("Home Country", style: TextStyle(fontFamily: 'MyFont'))),
+                  Text("Home", style: TextStyle(fontFamily: 'MyFont'))),
           BottomNavigationBarItem(
               icon: Icon(Icons.flag),
               title: Text("Countries", style: TextStyle(fontFamily: 'MyFont'))),
